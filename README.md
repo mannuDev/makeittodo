@@ -273,7 +273,7 @@ src/
 Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/todays-ledger.git
+git clone (https://github.com/mannuDev/makeittodo.git)
 ```
 
 Go inside project

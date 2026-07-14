@@ -1,99 +1,646 @@
-# Today's Ledger — Todo App (Advanced Edition)
+# 📒 Today's Ledger — Advanced Todo App
 
-A production-grade, backend-free todo list. React + Redux Toolkit, persisted
-to `localStorage` — no account, no server, works fully offline after first load.
+> A production-grade, backend-free Todo application built with **React**, **Redux Toolkit**, **Vite**, and **localStorage**. Designed with modern UX principles, offline-first functionality, and powerful productivity features.
 
-## Feature set
+![Today's Ledger Demo]<img width="1890" height="903" alt="image" src="https://github.com/user-attachments/assets/935866f3-4f38-4d43-8c03-8360b2ce2185" />
 
-**Core**
-- Add tasks with priority, tags, and due date
-- Inline edit (double-click text, or the "edit" action)
-- Delete, with an **Undo** toast — nothing is ever silently gone
-- Subtask checklists inside any task, with a done/total counter
-- Mark-all / clear-completed, both undoable
+<p align="center">
+  <a href="https://makeittodo.netlify.app/" target="_blank">
+    <img src="https://img.shields.io/badge/🚀_Live_Demo-Visit_Now-success?style=for-the-badge" />
+  </a>
+  <a href="https://github.com/yourusername/todays-ledger">
+    <img src="https://img.shields.io/github/stars/yourusername/todays-ledger?style=for-the-badge" />
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" />
+  </a>
+</p>
 
-**Organization**
-- Filter: all / active / completed
-- Tag chips: click to filter by one or more tags (OR-matched), "clear" to reset
-- Search across text and tags
-- Sort: newest, priority, due date, alphabetical, or **manual drag order**
-- Drag-to-reorder (via `@dnd-kit`, keyboard-accessible) when sort = manual and no other filter is narrowing the list
+---
 
-**Bulk workflows**
-- "Select" mode: multi-select tasks, then complete / tag / delete them as a batch — all undoable
+# 📑 Table of Contents
 
-**History**
-- Full **undo/redo** (`Ctrl+Z` / `Ctrl+Shift+Z`), backed by a dependency-free history-stack reducer
-- View-only actions (search, sort, filter) never pollute the undo stack — only real data changes do
+- Overview
+- Live Demo
+- Features
+- Screenshots
+- Tech Stack
+- Project Architecture
+- Folder Structure
+- Installation
+- Running the Project
+- Available Scripts
+- Application Workflow
+- State Management
+- Undo / Redo System
+- Local Storage Persistence
+- Cross Tab Synchronization
+- Drag & Drop
+- Bulk Operations
+- Import & Export
+- Keyboard Shortcuts
+- Theme Support
+- 3D Statistics
+- Accessibility
+- Performance Optimizations
+- Future Roadmap
+- Contributing
+- License
+- Author
 
-**Data portability**
-- Export the entire ledger to a JSON file
-- Import a JSON file back in, with a confirmation step and its own undo
+---
 
-**Polish**
-- Light/dark theme toggle, respecting system preference on first load
-- A small animated 3D bar-chart (`react-three-fiber`) visualizing open vs. done counts, lazy-loaded so it doesn't cost anything until it's needed
-- Toast notifications for every destructive/bulk action
-- `?` opens a keyboard-shortcuts cheat sheet
-- Cross-tab sync: editing the list in one tab updates any other open tab
-- Debounced, corruption-safe `localStorage` persistence
-- Fully responsive, visible focus states, `prefers-reduced-motion` respected
+# 📖 Overview
 
-## Getting started
+Today's Ledger is a modern productivity application inspired by notebook-style task management.
 
-```bash
-npm install
-npm run dev
+Unlike traditional todo apps, it focuses on:
+
+- Offline-first experience
+- Undoable actions
+- Keyboard-first productivity
+- Responsive design
+- Fast local performance
+- Zero backend
+- Zero authentication
+- Modern user experience
+
+Everything is stored locally inside the browser using **localStorage**, allowing the application to continue working without an internet connection after the first load.
+
+---
+
+# 🚀 Live Demo
+
+🌐 **Website**
+
+https://makeittodo.netlify.app/
+
+---
+
+# ✨ Features
+
+## Core Features
+
+- ✅ Create Tasks
+- ✅ Edit Tasks
+- ✅ Delete Tasks
+- ✅ Undo Delete
+- ✅ Priority Levels
+- ✅ Due Dates
+- ✅ Tags
+- ✅ Subtasks
+- ✅ Progress Counter
+
+---
+
+## Organization
+
+- Filter Tasks
+- Search Tasks
+- Tag Filtering
+- Priority Sorting
+- Due Date Sorting
+- Alphabetical Sorting
+- Manual Drag Sorting
+
+---
+
+## Bulk Operations
+
+- Multi Select
+- Delete Selected
+- Complete Selected
+- Tag Selected
+- Undo Bulk Actions
+
+---
+
+## Productivity
+
+- Full Undo / Redo
+- Keyboard Shortcuts
+- Toast Notifications
+- Dark Mode
+- Light Mode
+- Cross Tab Sync
+
+---
+
+## Data Management
+
+- Export JSON
+- Import JSON
+- Local Storage
+- Offline Support
+
+---
+
+## Advanced
+
+- Drag & Drop
+- Animated 3D Statistics
+- Responsive Layout
+- Accessibility Support
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- React
+- Redux Toolkit
+- React Hooks
+- Vite
+
+---
+
+## Styling
+
+- CSS3
+- CSS Variables
+- Responsive Design
+
+---
+
+## State Management
+
+- Redux Toolkit
+
+---
+
+## Storage
+
+- localStorage
+
+---
+
+## Drag & Drop
+
+- @dnd-kit
+
+---
+
+## Charts
+
+- React Three Fiber
+
+---
+
+## Notifications
+
+- Custom Toast Context
+
+---
+
+# 🏗 Project Architecture
+
+```
+User
+
+      │
+
+      ▼
+
+React Components
+
+      │
+
+      ▼
+
+Redux Store
+
+      │
+
+      ▼
+
+Undoable Reducer
+
+      │
+
+      ▼
+
+Persist to localStorage
+
+      │
+
+      ▼
+
+Cross Tab Synchronization
+
+      │
+
+      ▼
+
+UI Update
 ```
 
-Then open the printed local URL (typically `http://localhost:5173`).
+---
 
-## Keyboard shortcuts
-
-| Key | Action |
-|---|---|
-| `N` | Focus the new-task field |
-| `/` | Focus search |
-| `Shift` + `A` | Toggle mark-all complete |
-| `Ctrl`/`Cmd` + `Z` | Undo |
-| `Ctrl`/`Cmd` + `Shift` + `Z` | Redo |
-| `Esc` | Cancel edit / close dialogs |
-| `?` | Toggle the shortcuts panel |
-
-## Project structure
+# 📂 Folder Structure
 
 ```
 src/
+
 ├── app/
-│   ├── store.js          # Redux store, undo/redo wiring, persistence, cross-tab sync
-│   ├── undoable.js         # Dependency-free undo/redo reducer wrapper
-│   └── ToastContext.jsx   # Toast notification system (context + UI)
+│   ├── store.js
+│   ├── undoable.js
+│   └── ToastContext.jsx
+│
 ├── components/
-│   ├── AddForm.jsx         # New-task form (text, priority, tags, due date)
-│   ├── Todo.jsx             # List, filters, tags, bulk-select, drag reorder, import/export
-│   ├── ConfirmDialog.jsx  # Generic confirm/cancel modal
-│   └── ShortcutsHelp.jsx  # Keyboard-shortcuts panel
+│   ├── AddForm.jsx
+│   ├── Todo.jsx
+│   ├── ConfirmDialog.jsx
+│   └── ShortcutsHelp.jsx
+│
 ├── features/
 │   ├── todo/
-│   │   └── todoSlice.js  # Todo state, reducers, memoized selectors
+│   │   └── todoSlice.js
+│   │
 │   └── ui/
-│       └── uiSlice.js     # Theme + shortcuts-panel UI state
+│       └── uiSlice.js
+│
 ├── App.jsx
 ├── main.jsx
 ├── App.css
 └── index.css
 ```
 
-## Design notes
+---
 
-**Why undo/redo instead of confirmation dialogs everywhere?** Modern UX
-guidance favors *reversible actions with undo* over interrupting confirmation
-dialogs for anything that can be cheaply reverted — it keeps the user in flow.
-Confirm dialogs are reserved for the two genuinely hard-to-recover cases:
-clearing everything completed at once, and replacing the whole ledger on import.
+# ⚙ Installation
 
-**Why is drag-reorder only available in one sort mode?** Reordering a
-*filtered or sorted* view doesn't have an unambiguous meaning — dragging item
-#2 above item #1 in a search result doesn't tell you where it should land in
-the full list. Manual order is its own explicit sort mode instead, so drag
-handles only appear when reordering is unambiguous.
+Clone the repository
+
+```bash
+git clone https://github.com/yourusername/todays-ledger.git
+```
+
+Go inside project
+
+```bash
+cd todays-ledger
+```
+
+Install packages
+
+```bash
+npm install
+```
+
+---
+
+# ▶ Running the Project
+
+Development
+
+```bash
+npm run dev
+```
+
+Production Build
+
+```bash
+npm run build
+```
+
+Preview Build
+
+```bash
+npm run preview
+```
+
+---
+
+# 📜 Available Scripts
+
+```bash
+npm run dev
+```
+
+Starts development server.
+
+---
+
+```bash
+npm run build
+```
+
+Build production version.
+
+---
+
+```bash
+npm run preview
+```
+
+Preview production build locally.
+
+---
+
+# 🔄 Application Workflow
+
+```
+Create Task
+
+↓
+
+Redux Action
+
+↓
+
+Reducer
+
+↓
+
+Undo History
+
+↓
+
+Save to localStorage
+
+↓
+
+Update UI
+
+↓
+
+Sync Other Tabs
+```
+
+---
+
+# 🧠 State Management
+
+Redux Toolkit manages:
+
+- Tasks
+- UI State
+- Theme
+- Filters
+- History
+- Import
+- Export
+
+---
+
+# ⏪ Undo / Redo System
+
+Supported Actions
+
+- Add
+- Edit
+- Delete
+- Complete
+- Bulk Actions
+- Import
+- Clear Completed
+
+Ignored Actions
+
+- Search
+- Sorting
+- Filtering
+- Theme Toggle
+
+Keyboard
+
+```
+Ctrl + Z
+
+Ctrl + Shift + Z
+```
+
+---
+
+# 💾 Local Storage
+
+Automatically stores
+
+- Tasks
+- Theme
+- Preferences
+
+Features
+
+- Debounced Save
+- Corruption Safe
+- Offline First
+
+---
+
+# 🔄 Cross Tab Synchronization
+
+If multiple browser tabs are open
+
+```
+Tab A
+
+↓
+
+Update
+
+↓
+
+localStorage Event
+
+↓
+
+Tab B
+
+↓
+
+Auto Refresh
+```
+
+---
+
+# 🖱 Drag & Drop
+
+Powered by
+
+```
+@dnd-kit
+```
+
+Available only in
+
+- Manual Sort
+
+Unavailable when
+
+- Searching
+- Filtering
+- Automatic Sorting
+
+---
+
+# 📦 Bulk Operations
+
+Selection Mode includes
+
+- Complete
+- Delete
+- Tag
+- Undo
+
+---
+
+# 📁 Import & Export
+
+Export
+
+```
+ledger.json
+```
+
+Import
+
+```
+Choose JSON File
+
+↓
+
+Confirmation
+
+↓
+
+Replace Current Data
+
+↓
+
+Undo Supported
+```
+
+---
+
+# ⌨ Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| N | New Task |
+| / | Search |
+| Shift + A | Mark All |
+| Ctrl + Z | Undo |
+| Ctrl + Shift + Z | Redo |
+| Esc | Cancel |
+| ? | Help |
+
+---
+
+# 🌙 Theme Support
+
+- Light Mode
+- Dark Mode
+- Auto Detect System Theme
+- Remember User Preference
+
+---
+
+# 📊 3D Statistics
+
+Built with
+
+```
+React Three Fiber
+```
+
+Displays
+
+- Open Tasks
+- Completed Tasks
+
+Lazy Loaded
+
+---
+
+# ♿ Accessibility
+
+- Keyboard Navigation
+- Focus Indicators
+- ARIA Labels
+- Reduced Motion
+- Screen Reader Friendly
+
+---
+
+# ⚡ Performance Optimizations
+
+- Memoized Selectors
+- Lazy Loading
+- Debounced Storage
+- Optimized Rendering
+- Cross Tab Sync
+- Minimal Bundle Size
+
+---
+
+# 🚀 Future Roadmap
+
+- Calendar View
+- Notifications
+- PWA Support
+- Cloud Sync
+- Team Collaboration
+- Mobile App
+- Recurring Tasks
+- Categories
+- Analytics Dashboard
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+1. Fork repository
+
+2. Create branch
+
+```
+git checkout -b feature-name
+```
+
+3. Commit
+
+```
+git commit -m "Added new feature"
+```
+
+4. Push
+
+```
+git push origin feature-name
+```
+
+5. Open Pull Request
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 👨‍💻 Author
+
+**Mannu Kumar**
+
+MCA Graduate • Full Stack Developer
+
+### Connect with me
+
+- GitHub: https://github.com/mannuDev
+- LinkedIn: https://linkedin.com/in/mmannusharma
+- Portfolio: https://portfolio-frontend-s0ee.onrender.com/
+
+---
+
+<p align="center">
+
+⭐ If you found this project useful, please consider giving it a Star on GitHub!
+
+Made with ❤️ by Mannu Kumar
+
+</p>
